@@ -1,0 +1,12 @@
+
+#NPM - node_modules
+node_modules
+
+
+#output
+dist
+
+.DS_Store
+*/.DS_Store
+*/**/.DS_Store
+

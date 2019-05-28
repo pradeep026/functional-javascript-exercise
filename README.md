@@ -18,3 +18,11 @@ Exercises of functional javascript | Function composition, currying
   - Exercise for `Immutable` 
   - Exercise for `Pure Functions`
   - Exercise for `Higher-Order Functions`
+  
+ ## Pipe and Compose
+
+ - `Compose` performs a `right-to-left` function composition (`reduceRight`).
+ - `Pipe` performs a `left-to-right` composition (`reduce`).
+ - `compose` and `pipe` functions are takes one or more functions as an arguments and execute it accordingly.
+ - Refer `src/js/utils.js` for compose and pipe functions,
+ 

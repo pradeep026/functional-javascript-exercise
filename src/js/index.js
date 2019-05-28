@@ -5,7 +5,7 @@ import '../../styles/style.css'
 const outputEl = document.getElementById(`output`);
 const outputEl1 = document.getElementById(`output1`) 
 
-const printOutputToDOM = (el) => data => el.innerHTML = JSON.stringify(data);;
+const printOutputToDOM = (el) => data => () => el.innerHTML = JSON.stringify(data);;
 
 const filteredMen = (arr) => filterByEq(`gender`, 'Male', arr);
 const filteredWomen = (arr) => filterByEq(`gender`, 'Female', arr);
@@ -23,36 +23,24 @@ const btnSingleWomen = document.querySelector(`.btnSingleWomen`);
 const btnMarriedMen = document.querySelector(`.btnMarriedMen`);
 const btnMarriedWomen = document.querySelector(`.btnMarriedWomen`);
 // Add click event listeners for button action
-btnSingleMen.addEventListener(`click`, () => {
-    printOutputToDOM(outputEl)(singleMen(persons)); 
-});
+btnSingleMen.addEventListener(`click`, printOutputToDOM(outputEl)(singleMen(persons)));
 
-btnSingleWomen.addEventListener(`click`, () => {
-    printOutputToDOM(outputEl)(singleWomen(persons)); 
-});
+btnSingleWomen.addEventListener(`click`, printOutputToDOM(outputEl)(singleWomen(persons)));
 
-btnMarriedMen.addEventListener(`click`, () => {
-    printOutputToDOM(outputEl)(marriedMen(persons)); 
-});
+btnMarriedMen.addEventListener(`click`, printOutputToDOM(outputEl)(marriedMen(persons)));
 
-btnMarriedWomen.addEventListener(`click`, () => {
-    printOutputToDOM(outputEl)(marriedWomen(persons)); 
-});
+btnMarriedWomen.addEventListener(`click`, printOutputToDOM(outputEl)(marriedWomen(persons)));
 //# Region function Composition - end//
 
 //# Region Currying - start//
-const isMarried = (value, arr) => filterByEq(`married`, value, arr);
-const single = arr => isMarried(false, arr);
-const married = arr => isMarried(true, arr);
+const isMarried = value => arr => filterByEq(`married`, value, arr);
+const single = isMarried(false);
+const married = isMarried(true);
 
 const btnSingle = document.querySelector(`.btnSingle`);
 const btnMarried = document.querySelector(`.btnMarried`);
 
-btnSingle.addEventListener(`click`, () => {
-    printOutputToDOM(outputEl1)(single(persons)); 
-});
+btnSingle.addEventListener(`click`, printOutputToDOM(outputEl1)(single(persons)));
 
-btnMarried.addEventListener(`click`, () => {
-    printOutputToDOM(outputEl1)(married(persons)); 
-});
+btnMarried.addEventListener(`click`, printOutputToDOM(outputEl1)(married(persons)));
 //# Region Currying - end//
